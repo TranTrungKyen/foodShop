@@ -5,6 +5,11 @@ require_once('../../db/db_func.php');
 if (isset($_POST['btnSearch'])) {
   // Get data input
   $search = $_POST['search'];
+  $conn = mysqli_connect(LOCALHOST, DB_USER, DB_PASSWORD, DB_DBNAME);
+  // Get data input
+  $search = mysqli_real_escape_string($conn, $search);
+
+  mysqli_close($conn);
 
   $role_id = isset($_GET['setRole']) ? $_GET['setRole'] : 1;
 

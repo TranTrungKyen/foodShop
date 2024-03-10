@@ -1,5 +1,7 @@
-<?php include('../../db/db_func.php') ?>
-<?php
+<?php 
+session_start();
+include('../../db/db_func.php');
+
 if (isset($_POST['btnDelete'])) {
     // Get data input
     $id  = $_GET['id'];
@@ -21,10 +23,10 @@ if (isset($_POST['btnDelete'])) {
     }
 } else if (isset($_POST['btnCancel'])) {
     if ($roleId == 2) {
-        $_SESSION['noti'] = "<div class='success'>Xóa người dùng thất bại!</div>";
+        $_SESSION['noti'] = "<div class='error'>Xóa người dùng thất bại!</div>";
         header("location:" . SITEURL . "admin/layout/admin/manage-user.php");
     } else {
-        $_SESSION['noti'] = "<div class='success'>Xóa người quản trị thất bại!</div>";
+        $_SESSION['noti'] = "<div class='error'>Xóa người quản trị thất bại!</div>";
 
         header("location:" . SITEURL . "admin/layout/admin/index.php");
     }

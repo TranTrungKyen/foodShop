@@ -120,7 +120,7 @@ ul{
 }
 
 .menu ul li{
-    padding: 0 32px;
+    padding: 0 28px;
 }
 
 .menu ul li a{
@@ -344,7 +344,15 @@ ul{
 }
 
 table tr th{
+    padding-left: 4px;
+    padding-right: 4px;
     border-bottom: 1px solid #000;
+    text-align: left;
+}
+table tr td{
+    padding-left: 4px;
+    padding-right: 4px;
+    border-bottom: 1px solid #ccc;
     text-align: left;
 }
 

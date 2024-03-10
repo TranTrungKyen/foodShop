@@ -28,19 +28,19 @@
             <div class="menu text-center">
                 <ul>
                     <li>
-                        <a href="<?= SITEURL; ?>"><i class="fa-solid fa-house"></i>Home</a>
+                        <a href="<?= SITEURL; ?>"><i class="fa-solid fa-house"></i>Trang chủ</a>
                     </li>
                     <li>
-                        <a href="<?= SITEURL; ?>categories.php"><i class="fa-solid fa-list"></i>Categories</a>
+                        <a href="<?= SITEURL; ?>categories.php"><i class="fa-solid fa-list"></i>Danh mục</a>
                     </li>
                     <li>
-                        <a href="<?= SITEURL; ?>foods.php"><i class="fa-solid fa-burger"></i>Foods</a>
+                        <a href="<?= SITEURL; ?>foods.php"><i class="fa-solid fa-burger"></i>Thực đơn</a>
                     </li>
                     <li>
-                        <a href="<?= SITEURL; ?>carts.php"><i class="fa-solid fa-cart-shopping"></i>Carts</a>
+                        <a href="<?= SITEURL; ?>carts.php"><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a>
                     </li>
                     <li>
-                        <a href="<?= SITEURL; ?>orders.php"><i class="fas fa-money-bill"></i>Orders</a>
+                        <a href="<?= SITEURL; ?>orders.php"><i class="fas fa-money-bill"></i>Đơn hàng</a>
                     </li>
                 </ul>
             </div>
@@ -50,10 +50,10 @@
                     <?php if(empty($_SESSION['role_id']))
                     { ?>
                         <li>
-                            <a href="<?= SITEURL; ?>login.php">Login</a>
+                            <a href="<?= SITEURL; ?>login.php">Đăng nhập</a>
                         </li>
                         <li>
-                            <a href="<?= SITEURL; ?>register.php">Register</a>
+                            <a href="<?= SITEURL; ?>register.php">Đăng ký</a>
                         </li>
                     <?php } else {?>
                         <li>
@@ -61,7 +61,7 @@
                             
                         </li>
                         <li>
-                            <a href="<?= SITEURL; ?>admin/controllers/authen/logOut.php">Log out</a>
+                            <a href="<?= SITEURL; ?>admin/controllers/authen/logOut.php">Đăng xuất</a>
                         </li>
                     <?php } ?>
                 </ul>

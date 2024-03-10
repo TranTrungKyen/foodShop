@@ -45,8 +45,9 @@ if (isset($_POST['btnDelete'])) {
 
             header("location:" . SITEURL . "admin/layout/food/index.php");
         }
-    } else if (isset($_POST['btnCancel'])) {
-        header("location:" . SITEURL . "admin/layout/food/index.php");
     }
+} else if (isset($_POST['btnCancel'])) {
+    $_SESSION["noti"] = "<div class='error'>Xóa sản phẩm thất bại!</div>";
+    header("location:" . SITEURL . "admin/layout/food/index.php");
 }
 ?>

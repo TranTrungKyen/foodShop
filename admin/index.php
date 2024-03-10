@@ -25,13 +25,13 @@ if (empty($_SESSION['role_id'])) {
     <div class="menu">
         <div class="wrapper">
             <ul>
-                <li><a href="<?= SITEURL; ?>admin/index.php">Home</a></li>
-                <li><a href="<?= SITEURL; ?>admin/layout/admin">Admin Manager</a></li>
-                <li><a href="<?= SITEURL; ?>admin/layout/admin/manage-user.php">User Manager</a></li>
-                <li><a href="<?= SITEURL; ?>admin/layout/category">Category</a></li>
-                <li><a href="<?= SITEURL; ?>admin/layout/food">Food</a></li>
-                <li><a href="<?= SITEURL; ?>admin/layout/order">Order</a></li>
-                <li><a href="<?= SITEURL; ?>admin/controllers/authen/logOut.php">Log out</a></li>
+                <li><a href="<?= SITEURL; ?>admin/index.php">Trang chủ</a></li>
+                <li><a href="<?= SITEURL; ?>admin/layout/admin">Quản lý admin</a></li>
+                <li><a href="<?= SITEURL; ?>admin/layout/admin/manage-user.php">Quản lý người dùng</a></li>
+                <li><a href="<?= SITEURL; ?>admin/layout/category">Quản lý danh mục</a></li>
+                <li><a href="<?= SITEURL; ?>admin/layout/food">Quản lý sản phẩm</a></li>
+                <li><a href="<?= SITEURL; ?>admin/layout/order">Quản lý đơn hàng</a></li>
+                <li><a href="<?= SITEURL; ?>admin/controllers/authen/logOut.php">Đăng xuất</a></li>
             </ul>
 
         </div>
@@ -40,7 +40,7 @@ if (empty($_SESSION['role_id'])) {
     <!-- Main Content Start -->
     <div class="main-content">
         <div class="wrapper">
-            <h1>DASHBORAD</h1>
+            <h1>Hệ thống thông tin</h1>
             <div class="row mt-16">
                 <div class="col c-3 bg-white text-center px-1 py-2">
                     <?php
@@ -50,7 +50,7 @@ if (empty($_SESSION['role_id'])) {
                     ?>
                     <h1><?= $count; ?></h1>
                     <br />
-                    Admins
+                    Người quản trị
                 </div>
                 <div class="col c-o-1 c-3 bg-white text-center px-1 py-2">
                     <?php
@@ -60,7 +60,7 @@ if (empty($_SESSION['role_id'])) {
                     ?>
                     <h1><?= $count; ?></h1>
                     <br />
-                    Users
+                    Người dùng
                 </div>
                 <div class="col c-o-1 c-3 bg-white text-center px-1 py-2">
                     <?php
@@ -70,11 +70,11 @@ if (empty($_SESSION['role_id'])) {
                     ?>
                     <h1><?= $count; ?></h1>
                     <br />
-                    Categories
+                    Danh mục
                 </div>
             </div>
             <div class="row mt-16">
-                <div class="col c-o-2 c-3 text-center bg-white px-1 py-2">
+                <div class="col c-3 text-center bg-white px-1 py-2">
                     <?php
                     $sql = "SELECT * FROM product WHERE deleted ='0'";
                     $res = excuteResult($sql);
@@ -82,25 +82,46 @@ if (empty($_SESSION['role_id'])) {
                     ?>
                     <h1><?= $count; ?></h1>
                     <br />
-                    Foods
+                    Sản phẩm
                 </div>
                 <div class="col c-o-1 c-3 text-center bg-white px-1 py-2">
                     <?php
                     $sql = "SELECT * FROM `order`";
                     $count = '';
                     $res = excuteResult($sql);
-                    if($res == TRUE){
+                    if ($res == TRUE) {
                         $count = mysqli_num_rows($res);
-                        if($count < 0){
+                        if ($count < 0) {
                             $count = 0;
                         }
-                    }else{
+                    } else {
                         $count = 0;
                     }
                     ?>
                     <h1><?= $count; ?></h1>
                     <br />
-                    Orders
+                    Đơn hàng
+                </div>
+                <div class="col c-o-1 c-3 text-center bg-white px-1 py-2">
+                    <?php
+                    $sql = "SELECT SUM(total_money) as total FROM `order` WHERE status = '3'";
+                    $count = '';
+                    $res = excuteResult($sql);
+                    if ($res == TRUE) {
+                        $count = mysqli_num_rows($res);
+                        if ($count < 0) {
+                            $total = 0;
+                        } else {
+                            $row = mysqli_fetch_assoc($res);
+                            $total = $row['total'];
+                        }
+                    } else {
+                        $total = 0;
+                    }
+                    ?>
+                    <h1 class="price"><?= $total; ?></h1>
+                    <br />
+                    Tổng doanh thu
                 </div>
             </div>
 
@@ -116,6 +137,44 @@ if (empty($_SESSION['role_id'])) {
         </div>
     </div>
     <!-- Footer Section End -->
+
+    <script>
+        // Format du lieu tu số sang tiền
+        function formatMoney(input) {
+            // Chuyển đổi chuỗi thành số
+            const number = parseInt(input);
+
+            // Kiểm tra xem có phải là số không
+            if (isNaN(number)) {
+                return "0";
+            }
+
+            // Định dạng số tiền thành chuỗi và thêm đơn vị VND vào cuối
+            const formattedCurrency = number.toLocaleString('vi-VN') + ' VNĐ';
+            // Sử dụng toLocaleString để định dạng số với dấu cách phân tách hàng nghìn tự động
+
+            return formattedCurrency;
+        }
+        // Format du lieu tu tiền sang số
+        function moneyToNumber(input) {
+            // Loại bỏ ký tự tiền tệ và dấu cách
+            const cleanedInput = input.replace(/[^\d]/g, '');
+
+            // Chuyển đổi chuỗi thành số
+            const number = parseInt(cleanedInput);
+
+            // Kiểm tra xem có phải là số không
+            if (isNaN(number)) {
+                return 0;
+            }
+
+            return number;
+        }
+        var getPriceElements = document.querySelectorAll(".price");
+        getPriceElements.forEach((item) => {
+            item.textContent = formatMoney(item.textContent);
+        })
+    </script>
 </body>
 
 </html>

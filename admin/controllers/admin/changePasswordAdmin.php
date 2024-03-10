@@ -8,6 +8,13 @@ if (isset($_POST['btnSubmit'])) {
     $inputPassword = md5($_POST['password']);
     $newPassword = md5($_POST['newPassword']);
     $confirmPassword = md5($_POST['confirmPassword']);
+    $conn = mysqli_connect(LOCALHOST, DB_USER, DB_PASSWORD, DB_DBNAME);
+    // Get data input
+    $inputPassword = mysqli_real_escape_string($conn, $inputPassword);
+    $newPassword = mysqli_real_escape_string($conn, $newPassword);
+    $confirmPassword = mysqli_real_escape_string($conn, $confirmPassword);
+
+    mysqli_close($conn);
     $id  = $_GET['id'];
 
     // Viet cau lenh truy van chọn lọc dữ liệu
@@ -27,10 +34,10 @@ if (isset($_POST['btnSubmit'])) {
                     // Thuc thi cau lenh
                     $res = excute($sql);
                     if ($res == TRUE) {
-                        if($_SESSION['id'] == $id){
+                        if ($_SESSION['id'] == $id) {
                             reloadSession();
                         }
-                        if($_SESSION['role_id'] != 1){
+                        if ($_SESSION['role_id'] != 1) {
                             $_SESSION['noti'] = "<script>alert('Cập nhật mật khẩu thành công');</script>";
                             header("location:" . SITEURL . "infoUser.php");
                             exit();
@@ -50,7 +57,7 @@ if (isset($_POST['btnSubmit'])) {
                         exit();
                     }
                 } else {
-                    if($_SESSION['role_id'] != 1){
+                    if ($_SESSION['role_id'] != 1) {
                         $_SESSION['noti'] = "<script>alert('Mật khẩu mới không trùng khớp!');</script>";
                         header("location:" . SITEURL . "changePasswordUser.php");
                         exit();
@@ -61,8 +68,8 @@ if (isset($_POST['btnSubmit'])) {
                     exit();
                 }
             } else {
-                
-                if($_SESSION['role_id'] != 1){
+
+                if ($_SESSION['role_id'] != 1) {
                     $_SESSION['noti'] = "<script>alert('Mật khẩu không chính xác');</script>";
                     header("location:" . SITEURL . "changePasswordUser.php");
                     exit();

@@ -24,7 +24,11 @@
             <!-- Hien thi mon an moi -->
             <?php
             // Viet cau lenh truy van 
-            $sql2 = "SELECT * FROM product WHERE deleted = '0' ORDER BY category_id";
+            $sql2 = "SELECT product.* FROM product 
+            INNER JOIN category
+            ON product.category_id = category.id
+            WHERE product.deleted = '0' AND category.deleted = '0'
+             ORDER BY category_id";
             // Thuc thi truy van
             $res2 = excuteResult($sql2);
             // Dem so ban ghi

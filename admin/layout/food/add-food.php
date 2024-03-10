@@ -2,7 +2,7 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Add food</h1>
+        <h1>Thêm sản phẩm</h1>
 
         <?php
         if (isset($_SESSION['noti'])) {
@@ -13,22 +13,22 @@
 
         <form class="mt-16" action="<?= SITEURL; ?>admin/controllers/food/add.php" method="POST" enctype="multipart/form-data">
             <div class="field">
-                <label for="title">Title</label>
-                <input type="text" placeholder="Title" name="title" id="title" require>
+                <label for="title">Tiêu đề</label>
+                <input type="text" placeholder="Tiêu đề" name="title" id="title" require>
             </div>
             <div class="field">
-                <label for="price">Price</label>
-                <input type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Price" name="price" id="price" require>
+                <label for="price">Đơn giá</label>
+                <input type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Đơn giá" name="price" id="price" require>
             </div>
             <div class="field">
-                <label for="discount">Discount</label>
-                <input type="number" inputmode="numeric" pattern="[0-9]*" placeholder="discount" name="discount" id="discount" require>
+                <label for="discount">Giảm</label>
+                <input type="number" inputmode="numeric" pattern="[0-9]*" placeholder="Giảm" name="discount" id="discount" require>
             </div>
             <div class="field">
-                <label for="category_name">Category name: </label>
+                <label for="category_name">Danh mục </label>
                 <select id="category_name" name="category_name">
                     <?php
-                    $sql = "SELECT id, name FROM category";
+                    $sql = "SELECT id, name FROM category WHERE deleted = '0'";
                     $res = excuteResult($sql);
                     if ($res == TRUE) {
                         // Khoi tai so thu tu cho category
@@ -55,19 +55,19 @@
                 </select>
             </div>
             <div class="field">
-                <label for="description">Desciption</label>
-                <textarea class="description" name="description" id="description" placeholder="Description" rows="4"></textarea>
+                <label for="description">Mô tả</label>
+                <textarea class="description" name="description" id="description" placeholder="Mô tả" rows="4"></textarea>
             </div>
             <div class="field">
                 <label for="">
                     <img style="width:240px; display:none;" src="" alt="" id="preview-image">
                 </label>
-                <span>Image name: <span class="file-name">No image</span></span>
-                <label for="image">Choose new file</label>
+                <span>Tên ảnh: <span class="file-name">Không có</span></span>
+                <label for="image">Chọn ảnh</label>
                 <input type="file" name="image" id="image" onchange="previewImage(event)" style="display: none;">
             </div>
 
-            <input class="btn btn-primary mt-16" type="submit" name="submit">
+            <input class="btn btn-primary mt-16" type="submit" name="submit" value="Thêm">
         </form>
     </div>
 </div>

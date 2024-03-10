@@ -6,9 +6,15 @@ require_once('../../db/db_func.php');
 if (isset($_POST['submit'])) {
     // Get data input
     $name = $_POST['name'];
+    // Security input
+    $conn = mysqli_connect(LOCALHOST, DB_USER, DB_PASSWORD, DB_DBNAME);
+    $name = mysqli_real_escape_string($conn, $name);
+
+    mysqli_close($conn);
+    
     $currentImage = $_POST['currentImage'] ? $_POST['currentImage'] : '';
     $imageName = $currentImage;
-    if(!empty($_FILES['image']['name'])) {
+    if (!empty($_FILES['image']['name'])) {
         $imageName =  $_FILES['image']['name'];
         if (preg_match("/\.(jpg|jpeg|png|gif)$/i", $imageName)) {
             $newImageName = 'category_' . uniqid() . '.' . pathinfo($imageName, PATHINFO_EXTENSION);
@@ -21,14 +27,12 @@ if (isset($_POST['submit'])) {
                 header("location:" . SITEURL . "admin/layout/category/add-category.php");
                 die();
             }
-            
-            $_SESSION['noti'] = "<div class='success'>Update category successful</div>";
-            $imageName =  $newImageName;
 
+            $imageName =  $newImageName;
         }
     }
     // Xóa ảnh trong bộ nhớ
-    if($currentImage != '' && $imageName  != $currentImage){
+    if ($currentImage != '' && $imageName  != $currentImage) {
         $file_path = "../../../images/category/" . $currentImage;
         // Kiểm tra xem tệp tồn tại trước khi xóa
         if (file_exists($file_path)) {
@@ -39,7 +43,7 @@ if (isset($_POST['submit'])) {
                 echo "Failed to delete the file.";
                 die();
             }
-        } 
+        }
     }
     // Lay ra id
     $id  = $_GET['id'];
@@ -53,6 +57,7 @@ if (isset($_POST['submit'])) {
     // Thuc thi cau lenh truy van
     excute($sql);
 
+    $_SESSION['noti'] = "<div class='success'>Update category successful</div>";
     header("location:" . SITEURL . "/admin/layout/category/index.php");
 }
 ?>

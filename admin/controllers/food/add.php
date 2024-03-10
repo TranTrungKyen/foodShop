@@ -10,6 +10,15 @@ if (isset($_POST['submit'])) {
     $discount = intval($_POST['discount']);
     $category_id = intval($_POST['category_name']);
     $description = trim($_POST['description']);
+    // Security input
+    $conn = mysqli_connect(LOCALHOST, DB_USER, DB_PASSWORD, DB_DBNAME);
+    $title = mysqli_real_escape_string($conn, $title);
+    // $price = mysqli_real_escape_string($conn, $price);
+    // $discount = mysqli_real_escape_string($conn, $discount);
+    // $category_id = mysqli_real_escape_string($conn, $category_id);
+    $description = mysqli_real_escape_string($conn, $description);
+
+    mysqli_close($conn);
     // lay du lieu anh 
     $imageName = "";
     if (isset($_FILES['image'])) {

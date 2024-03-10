@@ -16,7 +16,8 @@ if (isset($_POST['btnDelete'])) {
         $row = mysqli_fetch_assoc($res);
         $imageName = $row['thumbnail'];
         // Viet cau lenh truy van xoa dữ liệu
-        $sql = "DELETE FROM category
+        $sql = "UPDATE category SET 
+        deleted = '1'
         WHERE id='$id'
         ";
         // Thuc thi cau lenh truy van
@@ -44,8 +45,9 @@ if (isset($_POST['btnDelete'])) {
 
             header("location:" . SITEURL . "admin/layout/category/index.php");
         }
-    } else if (isset($_POST['btnCancel'])) {
-        header("location:" . SITEURL . "admin/layout/category/index.php");
     }
+} else if (isset($_POST['btnCancel'])) {
+    $_SESSION["noti"] = "<div class='error'>Xóa category thất bại!</div>";
+    header("location:" . SITEURL . "admin/layout/category/index.php");
 }
 ?>

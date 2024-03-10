@@ -4,6 +4,11 @@ require_once('../../db/db_func.php');
 
 if (isset($_POST['submit'])) {
   $name = $_POST['name'];
+  // Security input
+  $conn = mysqli_connect(LOCALHOST, DB_USER, DB_PASSWORD, DB_DBNAME);
+  $name = mysqli_real_escape_string($conn, $name);
+
+  mysqli_close($conn);
   // Xu ly anh
   $imageName = "";
   if(isset($_FILES['image'])){
@@ -25,7 +30,8 @@ if (isset($_POST['submit'])) {
   
   $sql = "INSERT INTO category SET
       name = '$name',
-      thumbnail = '$imageName'
+      thumbnail = '$imageName',
+      deleted = '0'
       ";
   excute($sql);
   header("location:" . SITEURL . "admin/layout/category/index.php");

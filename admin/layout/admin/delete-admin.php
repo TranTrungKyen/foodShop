@@ -20,10 +20,10 @@ require_once('../../db/config.php');
         ?>
         <form class="mt-16" action="<?= SITEURL; ?>admin/controllers/admin/deleteAdmin.php?id=<?= $_GET['id']; ?><?= (isset($_GET['setRole'])) ? ('&setRole='.$_GET['setRole']) : '' ?>" method="POST">
             <div class="model-box">
-                <h3 class="model-box__title">Are you sure?</h3>
+                <h3 class="model-box__title">Bạn chắc chắn xóa?</h3>
                 <div class="btn-group mt-16">
-                    <input type="submit" value="Yes" class="btn btn-danger" name="btnDelete">
-                    <input type="submit" value="No" class="btn btn-secondary" name="btnCancel">
+                    <input type="submit" value="Xác nhận" class="btn btn-danger" name="btnDelete">
+                    <input type="submit" value="Hủy" class="btn btn-secondary" name="btnCancel">
                 </div>
             </div>
         </form>

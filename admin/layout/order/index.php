@@ -9,22 +9,22 @@ if (isset($_SESSION['noti'])) {
 <!-- Main Content Start -->
 <div class="main-content">
     <div class="wrapper">
-        <h1>Manage Order</h1>
+        <h1>Quản lý đơn hàng</h1>
         <ul class="order-status d-flex mt-16">
             <li class="order-status_item mr-16">
-                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php?status=0" class="btn btn-primary">Processing</a>
+                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php?status=0" class="btn btn-primary">Đang xử lý</a>
             </li>
             <li class="order-status_item mr-16">
-                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php?status=1" class="btn btn-primary">Processed</a>
+                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php?status=1" class="btn btn-primary">Đã xác nhận</a>
             </li>
             <li class="order-status_item mr-16">
-                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php?status=2" class="btn btn-primary">Shipping</a>
+                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php?status=2" class="btn btn-primary">Đang giao</a>
             </li>
             <li class="order-status_item mr-16">
-                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php?status=3" class="btn btn-primary">Completed</a>
+                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php?status=3" class="btn btn-primary">Đã hoàn thành</a>
             </li>
             <li class="order-status_item">
-                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php" class="btn btn-primary">All order</a>
+                <a href="<?= SITEURL; ?>admin/controllers/order/searchByStatus.php" class="btn btn-primary">Tất cả đơn hàng</a>
             </li>
         </ul>
         <?php
@@ -32,16 +32,16 @@ if (isset($_SESSION['noti'])) {
         {
             switch ($status) {
                 case 0:
-                    $status = "Processing";
+                    $status = "Đang xử lý";
                     break;
                 case 1:
-                    $status = "Processed";
+                    $status = "Đã xác nhận";
                     break;
                 case 2:
-                    $status = "Delivering";
+                    $status = "Đang giao";
                     break;
                 case 3:
-                    $status = "Completed";
+                    $status = "Đã hoàn thành";
                     break;
                 default:
                     $status = "Null";
@@ -66,16 +66,16 @@ if (isset($_SESSION['noti'])) {
 
                 <table class="tbl-full mt-16">
                     <tr>
-                        <th>S.N.</th>
-                        <th>Full name</th>
+                        <th>STT</th>
+                        <th>Họ tên</th>
                         <th>Email</th>
-                        <th>Phone number</th>
-                        <th>Address</th>
-                        <th>Note</th>
-                        <th>Created at</th>
-                        <th>Status</th>
-                        <th>Total</th>
-                        <th>Action</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Ghi chú</th>
+                        <th>Tạo ngày</th>
+                        <th>Tình trạng</th>
+                        <th>Tổng</th>
+                        <th>Hành động</th>
                     </tr>
 
                     <?php
@@ -103,7 +103,7 @@ if (isset($_SESSION['noti'])) {
                             <td class="price"><?= $total_money; ?></td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="<?= SITEURL; ?>admin/layout/order/order_details.php?order_id=<?= $order_id; ?>&status=<?= $status; ?>" class="btn btn-secondary">Details</a>
+                                    <a href="<?= SITEURL; ?>admin/layout/order/order_details.php?order_id=<?= $order_id; ?>&status=<?= $status; ?>" class="btn btn-secondary">Chi tiết</a>
                                 </div>
                             </td>
                         </tr>

@@ -4,7 +4,7 @@
 <!-- Main Content Start -->
 <div class="main-content">
     <div class="wrapper">
-        <h1>Manage Admin</h1>
+        <h1>Quản lý admin</h1>
 
         <?php
         if (isset($_SESSION['noti'])) {
@@ -13,10 +13,10 @@
         }
         ?>
         <div class="d-flex justify-space mt-16">
-            <a href="<?= SITEURL; ?>admin/layout/admin/add-admin.php" class="btn btn-primary">Add Admin</a>
+            <a href="<?= SITEURL; ?>admin/layout/admin/add-admin.php" class="btn btn-primary">Thêm admin</a>
             <form action="<?= SITEURL; ?>admin/controllers/admin/searchAdmin.php" method="POST" class="search-box">
                 <button class="btn-search" name="btnSearch"><i class="fas fa-search"></i></button>
-                <input type="text" class="input-search" name="search" placeholder="Type to Search...">
+                <input type="text" class="input-search" name="search" placeholder="Tìm kiếm...">
             </form>
         </div>
 
@@ -39,12 +39,12 @@
 
                 <table class="tbl-full mt-16">
                     <tr>
-                        <th>S.N.</th>
-                        <th>Full name</th>
+                        <th>STT</th>
+                        <th>Họ tên</th>
                         <th>Email</th>
-                        <th>Phone number</th>
-                        <th>Address</th>
-                        <th>Actions</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Hành động</th>
                     </tr>
                     <?php
                     while ($rows = $res->fetch_assoc()) {
@@ -62,9 +62,9 @@
                             <td><?= $address ?></td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="<?= SITEURL; ?>admin/layout/admin/update-admin.php?id=<?= $id ?>" class="btn btn-secondary">Update</a>
-                                    <a href="<?= SITEURL; ?>admin/layout/admin/delete-admin.php?id=<?= $id ?>" class="btn btn-danger">Delete</a>
-                                    <a href="<?= SITEURL; ?>admin/layout/admin/change-password-admin.php?id=<?= $id ?>" class="btn btn-primary">Change password</a>
+                                    <a href="<?= SITEURL; ?>admin/layout/admin/update-admin.php?id=<?= $id ?>" class="btn btn-secondary">Cập nhật</a>
+                                    <a href="<?= SITEURL; ?>admin/layout/admin/delete-admin.php?id=<?= $id ?>" class="btn btn-danger">Xóa</a>
+                                    <a href="<?= SITEURL; ?>admin/layout/admin/change-password-admin.php?id=<?= $id ?>" class="btn btn-primary">Đổi mật khẩu</a>
                                 </div>
                             </td>
                         </tr>

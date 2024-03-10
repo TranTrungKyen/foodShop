@@ -4,7 +4,7 @@
 <!-- Main Content Start -->
 <div class="main-content">
     <div class="wrapper">
-        <h1>Manage Food</h1>
+        <h1>Quản lý sản phẩm</h1>
         <!-- Hien thi thong bao -->
         <?php
         if (isset($_SESSION['noti'])) {
@@ -14,10 +14,10 @@
         ?>
         <!-- Nut them san pham va input search theo ten san pham -->
         <div class="d-flex justify-space mt-16">
-            <a href="./add-food.php" class="btn btn-primary">Add food</a>
+            <a href="./add-food.php" class="btn btn-primary">Thêm sản phẩm</a>
             <form action="<?= SITEURL; ?>admin/controllers/food/search.php" method="POST" class="search-box">
                 <button class="btn-search" name="btnSearch"><i class="fas fa-search"></i></button>
-                <input type="text" class="input-search" name="search" placeholder="Type to Search...">
+                <input type="text" class="input-search" name="search" placeholder="Tìm kiếm...">
             </form>
         </div>
 
@@ -27,7 +27,7 @@
             $sql = $_SESSION['sql'];
         } else {
             $sql = "SELECT product.*, category.name as category_name FROM product 
-                JOIN category ON product.category_id = category.id WHERE deleted = '0'";
+                JOIN category ON product.category_id = category.id WHERE product.deleted = '0' AND category.deleted = '0'";
         }
         $res = excuteResult($sql);
         if ($res == TRUE) {
@@ -40,16 +40,16 @@
                 <!-- In bảng -->
                 <table class="tbl-full mt-16">
                     <tr>
-                        <th>S.N.</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Discount</th>
-                        <th>Category</th>
-                        <th>Desciption</th>
-                        <th>Image</th>
-                        <th>Created at</th>
-                        <th>Updated at</th>
-                        <th>Action</th>
+                        <th style="width: 32px;">STT</th>
+                        <th style="width: 100px;">Tiêu đề</th>
+                        <th style="width: 100px;">Đơn giá</th>
+                        <th style="width: 32px;">Giảm</th>
+                        <th style="width: 80px;">Danh mục</th>
+                        <th style="width: 200px;">Mô tả</th>
+                        <th style="width: 100px;">Ảnh</th>
+                        <th style="width: 80px;">Tạo ngày</th>
+                        <th style="width: 112px;">Cập nhật ngày</th>
+                        <th style="width: 100px;">Hành động</th>
                     </tr>
 
                     <!-- In dòng dữ liệu -->
@@ -82,8 +82,8 @@
                             <td><?= formatDate($updated_at); ?></td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="./update-food.php?id=<?= $id; ?>" class="btn btn-secondary">Update</a>
-                                    <a href="./delete-food.php?id=<?= $id; ?>" class="btn btn-danger">Delete</a>
+                                    <a href="./update-food.php?id=<?= $id; ?>" class="btn btn-secondary" style="width: 100px; padding-left: 4px; padding-right: 4px;">Cập nhật</a>
+                                    <a href="./delete-food.php?id=<?= $id; ?>" class="btn btn-danger">Xóa</a>
                                 </div>
                             </td>
                         </tr>

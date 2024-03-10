@@ -3,7 +3,7 @@
 <!-- Main Content Start -->
 <div class="main-content">
     <div class="wrapper">
-        <h1>Manage Category</h1>
+        <h1>Quản lý danh mục</h1>
 
         <?php
         if (isset($_SESSION['noti'])) {
@@ -12,10 +12,10 @@
         }
         ?>
         <div class="d-flex justify-space mt-16">
-            <a href="./add-category.php" class="btn btn-primary">Add category</a>
+            <a href="./add-category.php" class="btn btn-primary">Thêm danh mục</a>
             <form action="<?= SITEURL; ?>admin/controllers/category/search.php" method="POST" class="search-box">
                 <button class="btn-search" name="btnSearch"><i class="fas fa-search"></i></button>
-                <input type="text" class="input-search" name="search" placeholder="Type to Search...">
+                <input type="text" class="input-search" name="search" placeholder="Tìm kiếm...">
             </form>
         </div>
 
@@ -24,7 +24,7 @@
         if (isset($_SESSION['sql']) && !empty($_SESSION['sql'])) {
             $sql = $_SESSION['sql'];
         } else {
-            $sql = "SELECT * FROM category";
+            $sql = "SELECT * FROM category WHERE deleted = '0'";
         }
         $res = excuteResult($sql);
         if ($res == TRUE) {
@@ -38,10 +38,10 @@
 
                 <table class="tbl-full mt-16">
                     <tr>
-                        <th>S.N.</th>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th>Actions</th>
+                        <th>STT</th>
+                        <th>Tên</th>
+                        <th>Ảnh</th>
+                        <th>Hành động</th>
                     </tr>
                     <?php
                     while ($rows = $res->fetch_assoc()) {
@@ -61,8 +61,8 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="./update-category.php?id=<?= $id; ?>" class="btn btn-secondary">Update</a>
-                                    <a href="./delete-category.php?id=<?= $id; ?>" class="btn btn-danger">Delete</a>
+                                    <a href="./update-category.php?id=<?= $id; ?>" class="btn btn-secondary">Cập nhật</a>
+                                    <a href="./delete-category.php?id=<?= $id; ?>" class="btn btn-danger">Xóa</a>
                                 </div>
                             </td>
                         </tr>

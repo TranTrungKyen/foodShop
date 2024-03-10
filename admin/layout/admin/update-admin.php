@@ -2,7 +2,7 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Update Admin</h1>
+        <h1>Cập nhật thông tin</h1>
 
         <?php
         if (isset($_SESSION['noti'])) {
@@ -31,22 +31,22 @@
 
         <form class="mt-16" action="<?= SITEURL; ?>admin/controllers/admin/updateAdmin.php?id=<?= $id; ?><?= (isset($_GET['setRole'])) ? ('&setRole='.$_GET['setRole']) : '' ?>" method="POST">
             <div class="field">
-                <label for="fullname">Full name</label>
-                <input type="text" placeholder="Full name" name="fullname" id="fullname" value="<?= $fullname; ?>" require>
+                <label for="fullname">Họ tên</label>
+                <input type="text" placeholder="Họ tên" name="fullname" id="fullname" value="<?= $fullname; ?>" require>
             </div>
             <div class="field">
                 <label for="email">Email</label>
                 <input type="email" placeholder="Email" name="email" id="email" value="<?= $email; ?>" require>
             </div>
             <div class="field">
-                <label for="phone_number">Phone number</label>
-                <input type="text" placeholder="Phone number" name="phone_number" value="<?= $phoneNumber; ?>" id="phone_number" require>
+                <label for="phone_number">Số điện thoại</label>
+                <input type="text" placeholder="Số điện thoại" name="phone_number" value="<?= $phoneNumber; ?>" id="phone_number" require>
             </div>
             <div class="field">
-                <label for="address">Address</label>
-                <input type="text" placeholder="Address" name="address" value="<?= $address; ?>" id="address" require>
+                <label for="address">Địa chỉ</label>
+                <input type="text" placeholder="Địa chỉ" name="address" value="<?= $address; ?>" id="address" require>
             </div>
-            <input class="btn btn-primary" type="submit" name="submit">
+            <input class="btn btn-primary" type="submit" name="submit" value="Cập nhật">
         </form>
     </div>
 </div>

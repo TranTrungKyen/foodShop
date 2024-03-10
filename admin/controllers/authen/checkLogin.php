@@ -4,8 +4,15 @@ session_start();
 require_once('../../db/db_func.php');
 
 if(isset($_POST['submit'])){
+    // Security input data
+    $conn = mysqli_connect(LOCALHOST, DB_USER, DB_PASSWORD, DB_DBNAME);
     $email = trim($_POST['email']);
     $password = md5($_POST['password']);
+    // Get data input
+    $email = mysqli_real_escape_string($conn,$email);
+    $password = mysqli_real_escape_string($conn,$password);
+
+    mysqli_close($conn);
 
     $sql = "SELECT * from user WHERE email = '$email' AND password='$password'";
     $res = excuteResult($sql);

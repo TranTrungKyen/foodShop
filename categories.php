@@ -8,7 +8,7 @@
 
             <?php
         // Viet cau lenh truy van 
-        $sql = "SELECT * FROM category";
+        $sql = "SELECT * FROM category WHERE deleted ='0'";
         // Thuc thi truy van
         $res = excuteResult($sql);
         // Dem so ban ghi

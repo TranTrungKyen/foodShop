@@ -2,7 +2,7 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Update category</h1>
+        <h1>Cập nhật danh mục</h1>
 
         <?php
         if (isset($_SESSION['noti'])) {
@@ -31,24 +31,24 @@
         method="POST" 
         enctype="multipart/form-data">
             <div class="field">
-                <label for="name">Name</label>
-                <input type="text" placeholder="Category name" name="name" id="name" value="<?= $name; ?>" require>
+                <label for="name">Tên danh mục</label>
+                <input type="text" placeholder="Tên danh mục" name="name" id="name" value="<?= $name; ?>" require>
             </div>
             <div class="field">
-                <label for="">Current image:
+                <label for="">Hình ảnh
                     <img style="height:200px; display:block;"   
                     src="<?= (!empty($thumbnail)) ? SITEURL.'images/category/'.$thumbnail : '' ?>"  
                     alt="<?= (!empty($thumbnail)) ? $thumbnail : 'Null' ?>" 
                     id="preview-image">
                 </label>
-                <span>Image name: <span class="file-name"><?= (!empty($thumbnail)) ? $thumbnail : 'No image' ?></span></span>
-                <label for="image">Choose new file</label>
+                <span>Tên ảnh: <span class="file-name"><?= (!empty($thumbnail)) ? $thumbnail : 'No image' ?></span></span>
+                <label for="image">Chọn ảnh</label>
                 <input type="file" name="image" id="image" onchange="previewImage(event)" style="display: none;">
                 <input type="text" name="currentImage" id="currentImage" 
                 value="<?= (!empty($thumbnail)) ? $thumbnail : '' ?>" 
                 style="display: none;">
             </div>
-            <input class="btn btn-primary mt-16" type="submit" name="submit">
+            <input class="btn btn-primary mt-16" type="submit" name="submit" value="Cập nhật">
         </form>
     </div>
 </div>

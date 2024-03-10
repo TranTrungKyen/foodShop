@@ -4,7 +4,7 @@
 <!-- Main Content Start -->
 <div class="main-content">
     <div class="wrapper">
-        <h1>Order details</h1>
+        <h1>Chi tiết đơn hàng</h1>
         <?php
         $order_id = '';
         $status = '';
@@ -34,13 +34,13 @@
 
                 <table class="tbl-full mt-16">
                     <tr>
-                        <th>S.N.</th>
-                        <th>Title</th>
-                        <th>Image</th>
-                        <th>Category</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
+                        <th>STT</th>
+                        <th>Tiêu đề</th>
+                        <th>Ảnh</th>
+                        <th>Danh mục</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Tổng</th>
                     </tr>
 
                     <?php
@@ -75,14 +75,14 @@
                         case 0:
                             echo '
                                 <div class="btn-group btn-group--center mt-16">
-                                    <a href="' . SITEURL . 'admin/controllers/order/updateStatus.php?order_id=' . $order_id . '&status=' . $status . '" class="btn btn-secondary">Confirm</a>
+                                    <a href="' . SITEURL . 'admin/controllers/order/updateStatus.php?order_id=' . $order_id . '&status=' . $status . '" class="btn btn-secondary">Xác nhận</a>
                                 </div>
                             ';
                             break;
                         case 1:
                             echo '
                                 <div class="btn-group btn-group--center mt-16">
-                                    <a href="' . SITEURL . 'admin/controllers/order/updateStatus.php?order_id=' . $order_id . '&status=' . $status . '" class="btn btn-secondary">Delivery</a>
+                                    <a href="' . SITEURL . 'admin/controllers/order/updateStatus.php?order_id=' . $order_id . '&status=' . $status . '" class="btn btn-secondary">Giao hàng</a>
                                 </div>
                             ';
                             break;

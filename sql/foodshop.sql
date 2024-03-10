@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2024 at 12:34 PM
+-- Generation Time: Mar 09, 2024 at 09:02 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -42,13 +42,17 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `total_money`) VALUES
 (11, 2, 2, 2, 238000),
 (18, 2, 7, 1, 49000),
-(45, 1, 1, 1, 269000),
-(46, 1, 2, 1, 119000),
-(47, 1, 3, 1, 129000),
-(49, 1, 11, 1, 53100),
 (50, 50, 1, 1, 269000),
 (51, 50, 11, 1, 53100),
-(57, 2, 11, 1, 53100);
+(57, 2, 11, 1, 53100),
+(58, 47, 1, 2, 538000),
+(59, 47, 2, 1, 119000),
+(60, 47, 8, 1, 59000),
+(62, 1, 1, 2, 538000),
+(63, 1, 4, 1, 69000),
+(64, 1, 12, 2, 408500),
+(65, 1, 13, 2, 365500),
+(66, 1, 11, 1, 53100);
 
 -- --------------------------------------------------------
 
@@ -59,17 +63,20 @@ INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `total_money`) VA
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `thumbnail` varchar(255) NOT NULL
+  `thumbnail` varchar(255) NOT NULL,
+  `deleted` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `thumbnail`) VALUES
-(1, 'Pizza', 'category_65d43d6416fb1.jpg'),
-(2, 'Burger', 'category_65d43d8fed2e1.jpg'),
-(3, 'Drink', 'category_65d46af535d17.jpg');
+INSERT INTO `category` (`id`, `name`, `thumbnail`, `deleted`) VALUES
+(1, 'Pizza', 'category_65d43d6416fb1.jpg', 0),
+(2, 'Burger', 'category_65d43d8fed2e1.jpg', 0),
+(3, 'Drink', 'category_65d46af535d17.jpg', 0),
+(13, 'Quemby Manning', 'category_65eb2e4ab2332.jpg', 1),
+(14, 'Malcolm Robertson', 'category_65eb37cfadca1.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -108,22 +115,25 @@ CREATE TABLE `order` (
 
 INSERT INTO `order` (`id`, `user_id`, `fullname`, `email`, `phone_number`, `address`, `note`, `order_date`, `status`, `total_money`) VALUES
 (1, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 00:49:08', 3, 269000),
-(2, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 00:51:25', 1, 269000),
+(2, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 00:51:25', 3, 269000),
 (3, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 00:51:29', 3, 269000),
 (4, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 00:52:40', 3, 269000),
-(7, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 01:02:29', 1, 269000),
-(9, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', 'note', '2024-03-02 01:09:29', 2, 829000),
-(10, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 01:24:53', 0, 560000),
-(11, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 01:32:27', 0, 570100),
-(12, 50, 'Anastasia Stout', 'kientt@gmail.com', '0113 255 752', 'Velit enim distincti', '', '2024-03-02 01:33:43', 1, 322100),
-(13, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', 'Nha van hoa to 12', '2024-03-03 13:06:03', 0, 490100),
-(14, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', '', '2024-03-03 13:10:21', 0, 490100),
-(15, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', '', '2024-03-03 13:11:21', 0, 539100),
-(16, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', '', '2024-03-03 13:12:19', 0, 808100),
+(7, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 01:02:29', 3, 269000),
+(9, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', 'note', '2024-03-02 01:09:29', 3, 829000),
+(10, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 01:24:53', 3, 560000),
+(11, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-02 01:32:27', 3, 570100),
+(12, 50, 'Anastasia Stout', 'kientt@gmail.com', '0113 255 752', 'Velit enim distincti', '', '2024-03-02 01:33:43', 2, 322100),
+(13, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', 'Nha van hoa to 12', '2024-03-03 13:06:03', 2, 490100),
+(14, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', '', '2024-03-03 13:10:21', 2, 490100),
+(15, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', '', '2024-03-03 13:11:21', 2, 539100),
+(16, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', '', '2024-03-03 13:12:19', 2, 808100),
 (17, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', '', '2024-03-03 13:38:17', 2, 1116100),
-(18, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', 'test', '2024-03-03 13:39:28', 0, 609100),
-(19, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', 'test1', '2024-03-03 13:39:45', 0, 1147100),
-(20, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', '', '2024-03-03 13:57:26', 0, 340100);
+(18, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', 'test', '2024-03-03 13:39:28', 2, 609100),
+(19, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', 'test1', '2024-03-03 13:39:45', 2, 1147100),
+(20, 2, 'Tran Tien Dung', 'user@gmail.com', '0123456789', 'Ha Nam', '', '2024-03-03 13:57:26', 2, 340100),
+(21, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-04 18:36:53', 3, 623200),
+(22, 47, 'Norman Dejesus', 'kemucydej@gmail.com', '0719 457 328', 'Cum exercitation ist', '', '2024-03-04 19:29:59', 3, 716000),
+(23, 1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '', '2024-03-08 22:22:39', 0, 1434100);
 
 -- --------------------------------------------------------
 
@@ -194,7 +204,19 @@ INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `price`, `num`, `to
 (47, 19, 11, 53100, 1, 53100),
 (48, 20, 2, 119000, 2, 238000),
 (49, 20, 7, 49000, 1, 49000),
-(50, 20, 11, 53100, 1, 53100);
+(50, 20, 11, 53100, 1, 53100),
+(51, 21, 1, 269000, 1, 269000),
+(52, 21, 2, 119000, 1, 119000),
+(53, 21, 3, 129000, 1, 129000),
+(54, 21, 11, 53100, 2, 106200),
+(55, 22, 1, 269000, 2, 538000),
+(56, 22, 2, 119000, 1, 119000),
+(57, 22, 8, 59000, 1, 59000),
+(58, 23, 1, 269000, 2, 538000),
+(59, 23, 4, 69000, 1, 69000),
+(60, 23, 12, 204250, 2, 408500),
+(61, 23, 13, 182750, 2, 365500),
+(62, 23, 11, 53100, 1, 53100);
 
 -- --------------------------------------------------------
 
@@ -230,7 +252,16 @@ INSERT INTO `product` (`id`, `category_id`, `title`, `price`, `discount`, `thumb
 (8, 3, 'TRÀ HIBISCUS THANH YÊN 330ML', 59000, 0, 'food_65d7213788d71.jpg', 'Trà xanh hoa lài Đài Loan, hoa lạc thần, mứt thanh yên Nhật, trân châu trắng', '2024-02-22 17:25:59', '2024-02-22 17:25:59', 0),
 (9, 3, 'CHÈ DƯỠNG NHAN 330ML', 53000, 0, 'food_65d7282c345f9.jpg', 'Đông trùng hạ thảo, hạt chia, táo đỏ, hạt sen, long nhãn, nấm tuyết, tuyết yến, nhựa đào, kỷ tử, táo cắt, lá dứa, đường phèn', '2024-02-22 17:55:40', '2024-02-22 17:55:40', 0),
 (10, 3, 'TRÀ SỮA OLOONG 330ML', 53000, 0, 'food_65d7286ba57fe.jpg', 'Trà sữa Oolong TASTY là sự hòa quyện của tinh túy giữa trà oolong vùng Bảo Lộc trứ danh và bột sữa thơm béo. Với tỷ lệ trà, sữa và đường phù hợp, mỗi ly trà sữa oolong có vị ngọt thanh dịu nhẹ, dễ dàng làm xiêu lòng mọi tín đồ trà sữa. TASTY Kitchen hy vọng, mỗi ly trà sữa oloong sẽ giúp quý khách tận hưởng vị ngon lan tỏa đến từng giác quan và tiếp thêm năng lượng cho ngày tươi mới.', '2024-02-22 17:56:43', '2024-02-22 17:56:43', 0),
-(11, 3, 'Trà lài nhãn 330ml', 59000, 10, 'food_65e21e90cd6f3.jpg', 'Trà lài luôn là khởi đầu dễ chịu để sáng tạo nên những thức uống thanh nhiệt thú vị. Khi kết hợp cùng long nhãn, trà lài được cân bằng độ chát nhẹ bằng vị ngọt dịu thanh nhã, tạo nên một thức uống giải nhiệt, an thần hiệu quả.', '2024-03-02 01:29:36', '2024-03-02 01:29:36', 0);
+(11, 3, 'Trà lài nhãn 330ml', 59000, 10, 'food_65e21e90cd6f3.jpg', 'Trà lài luôn là khởi đầu dễ chịu để sáng tạo nên những thức uống thanh nhiệt thú vị. Khi kết hợp cùng long nhãn, trà lài được cân bằng độ chát nhẹ bằng vị ngọt dịu thanh nhã, tạo nên một thức uống giải nhiệt, an thần hiệu quả.', '2024-03-02 01:29:36', '2024-03-02 01:29:36', 0),
+(12, 1, 'Pizza Singapore Cua Xốt Ớt Singapore', 215000, 5, 'food_65e5c089c4631.jpg', 'Thịt Cua, Tôm Có Đuôi, Xốt Ớt Singapore, Xốt Mayonnaise, Phô Mai Mozzarella, Cà Chua, Hành Tây', '2024-03-04 19:37:29', '2024-03-04 19:37:29', 0),
+(13, 1, 'Pizza Singapore Mayo Black Pepper Crab', 215000, 15, 'food_65e5c0c7db015.jpg', 'Thịt Cua, Tôm Có Đuôi, Xốt Tiêu Đen, Xốt Mayonnaise, Phô Mai Mozzarella, Cà Chua, Hành Tây, Dứa', '2024-03-04 19:38:31', '2024-03-04 19:38:31', 0),
+(14, 1, 'Pizza Seoul Bò Xào Bulgogi Viền Khoai Lang Phô Mai', 195000, 10, 'food_65e5c104f1177.jpg', 'Phô Mai Mozzarella, Xốt Bulgogi, Bò Bulgogi, Miến Hàn Quốc, Cà Rốt, Nấm, Ớt Chuông Xanh, Mè Trắng, Viền Phô Mai Khoai Lang', '2024-03-04 19:39:32', '2024-03-04 19:39:32', 0),
+(15, 14, 'Qui ut expedita dele', 745, 27, 'food_65eb38aa7eb7a.jpeg', 'Aut quo quasi non lo', '2024-03-08 23:11:22', '2024-03-08 23:11:22', 0),
+(16, 2, 'Single grill onion', 49000, 0, 'food_65ec130eb6fc3.jpg', 'Burger Bò Nướng Hành Chiên', '2024-03-09 14:43:10', '2024-03-09 14:43:10', 0),
+(17, 2, 'Spicy tendercrisp burger', 79000, 10, 'food_65ec134377f92.jpg', 'Burger gà giòn cay', '2024-03-09 14:44:03', '2024-03-09 14:44:03', 0),
+(18, 2, 'TENDERGRILL BURGER', 79000, 0, 'food_65ec137c2f9e6.jpg', 'Burger gà nướng', '2024-03-09 14:45:00', '2024-03-09 14:45:00', 0),
+(19, 3, 'Trà vải hoa hồng 330ml', 59000, 12, 'food_65ec13f225be7.jpg', 'Trà vải hoa hồng là sự kết hợp hoàn hảo của trà xanh hoa nhài Đài Loan đậm vị, cùng mứt vải hoa hồng dịu dàng thơm ngọt tạo nên thứ thức uống quyến rũ đầy tươi mát. Topping vải ngâm chua ngọt hấp dẫn góp phần hoàn thiện hương vị tuyệt hảo của món trà. Thưởng thức một cốc trà vải hoa hồng mát lạnh chắc chắn sẽ là một sự lựa chọn hoàn hảo, giúp xua tan đi cái nóng oi ả của tiết trời mùa hè.', '2024-03-09 14:46:58', '2024-03-09 14:46:58', 0),
+(20, 3, 'TRÀ LÀI KIWI NHA ĐAM 330ML', 59000, 0, 'food_65ec1438c4dcc.jpg', 'Đúng như tên gọi là một món nước hoàn hảo dành cho phái đẹp giúp đẹp da, giữ dáng và chống lão hóa. Từ các nguyên liệu chọn lọc như: tuyết yến, nhựa đào, long nhãn, nấm đông trùng hạ thảo, táo đỏ, kỷ tử, hạt sen, hạt chia,...được nấu tỉ mỉ cùng đường cỏ ngọt, một loại đường tốt cho sức khỏe công dụng hỗ trợ giảm cân, mang đến vị ngọt thanh mát dễ dàng chinh phục từng thực khách khó tính nhất', '2024-03-09 14:48:08', '2024-03-09 14:48:08', 0);
 
 -- --------------------------------------------------------
 
@@ -276,7 +307,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `fullname`, `email`, `phone_number`, `address`, `password`, `role_id`, `created_at`, `updated_at`, `deleted`) VALUES
 (1, 'Tran Trung Kien', 'admin@gmail.com', '0123456789', 'Ha Noi', '0cc175b9c0f1b6a831c399e269772661', 1, '2024-02-10 12:41:34', '2024-02-10 12:41:34', 0),
-(2, 'Tran Tien Dung', 'user@gmail.com', '033333333', 'Tây Ninh', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-02-10 18:31:34', '2024-03-04 00:58:15', 0),
+(2, 'Trần Tiến Dũng', 'user@gmail.com', '04444444444', 'Đông Anh, Hà Nội', '202cb962ac59075b964b07152d234b70', 2, '2024-02-10 18:31:34', '2024-03-04 18:39:13', 0),
 (3, 'Hedy Mcconnell', 'nemehenisa@mailinator.com', '+1 (119) 549-5228', 'Et laborum animi ma', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-02-10 20:23:56', '2024-02-10 20:23:56', 0),
 (5, 'Yael King', 'pajededo@mailinator.com', '+1 (744) 729-4475', 'Praesentium reiciend', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-02-10 20:25:52', '2024-02-10 20:25:52', 0),
 (6, 'Bethany Wood', 'vefazany@mailinator.com', '+1 (798) 376-7278', 'Qui quia et repellen', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-02-10 20:26:45', '2024-02-10 20:26:45', 0),
@@ -320,13 +351,19 @@ INSERT INTO `user` (`id`, `fullname`, `email`, `phone_number`, `address`, `passw
 (47, 'Norman Dejesus', 'kemucydej@gmail.com', '0719 457 328', 'Cum exercitation ist', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-02-19 13:13:17', '2024-02-19 13:13:17', 1),
 (49, 'Kylie George', 'mabyg@gmail.com', '0939 922 759', 'Aut est ducimus inc', '0cc175b9c0f1b6a831c399e269772661', 1, '2024-02-19 13:29:09', '2024-02-19 13:29:09', 1),
 (50, 'Anastasia Stout', 'kientt@gmail.com', '0113 255 752', 'Velit enim distincti', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-02-26 20:40:10', '2024-02-26 20:40:10', 0),
-(51, 'Ezekiel Roberson', 'kientt@gmail.com', '0285 448 348', 'Impedit eius beatae', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-02-26 20:41:12', '2024-02-26 20:41:12', 0),
+(51, 'Ezekiel Roberson', 'kientt@gmail.com', '0285 448 348', 'Impedit eius beatae', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-02-26 20:41:12', '2024-02-26 20:41:12', 1),
 (52, 'Wyatt Mcfadden', 'dywa@gmail.com', '0686 789 904', 'Cum labore eum sapie', '0cc175b9c0f1b6a831c399e269772661', 1, '2024-02-29 23:22:50', '2024-02-29 23:22:50', 1),
 (53, 'Rogan Rogers', 'dywa@gmail.com', '0959 095 161', 'Alias enim id quaer', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-02-29 23:25:30', '2024-02-29 23:25:30', 0),
 (54, 'Abel Joyce', 'rihyfar@gmail.com', '0185 662 736', 'Nobis ex esse eaque ', '0cc175b9c0f1b6a831c399e269772661', 1, '2024-02-29 23:53:50', '2024-02-29 23:53:50', 1),
 (55, 'Samson Britt', 'qicacuzyma@gmail.com', '0405 169 303', 'Doloribus minima ani', '0cc175b9c0f1b6a831c399e269772661', 1, '2024-02-29 23:55:58', '2024-02-29 23:55:58', 1),
 (56, 'Josiah Patterson', 'lyso@gmail.com', '0545 835 705', 'Modi laboris ullamco', '0cc175b9c0f1b6a831c399e269772661', 1, '2024-02-29 23:56:14', '2024-02-29 23:56:14', 1),
-(57, 'Marny Maxwell', 'jusod@gmail.com', '0963 477 882', 'Cum corporis sit ex', '0cc175b9c0f1b6a831c399e269772661', 1, '2024-02-29 23:56:44', '2024-02-29 23:56:44', 1);
+(57, 'Marny Maxwell', 'jusod@gmail.com', '0963 477 882', 'Cum corporis sit ex', '0cc175b9c0f1b6a831c399e269772661', 1, '2024-02-29 23:56:44', '2024-02-29 23:56:44', 1),
+(58, 'Burton Mayo', 'nuzupa@gmail.com', '0889 186 901', 'In quia reprehenderi', '202cb962ac59075b964b07152d234b70', 1, '2024-03-08 22:23:25', '2024-03-08 22:23:33', 1),
+(59, 'Indigo Dean', 'xigatedi@gmail.com', '0627 136 337', 'Est nesciunt rerum', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-03-08 22:24:49', '2024-03-08 22:24:56', 1),
+(60, '', 'dungtt@gmail.com', '', '', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-03-08 22:50:15', '2024-03-08 22:50:15', 1),
+(61, 'Jessica Dean', 'kientt1@gmail.com', '0715 262 462', 'Impedit unde quod a', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-03-08 22:54:38', '2024-03-08 22:54:38', 0),
+(62, 'Keegan Sellers', 'vypo@gmail.com', '0734 072 906', 'Dignissimos sit do d', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-03-08 22:55:44', '2024-03-08 22:55:44', 1),
+(63, '\"\"', 'tewuta@gmail.com', '0308 765 665', 'Voluptas possimus s', '0cc175b9c0f1b6a831c399e269772661', 2, '2024-03-08 23:37:08', '2024-03-08 23:37:08', 0);
 
 --
 -- Indexes for dumped tables
@@ -396,13 +433,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `gallery`
@@ -414,19 +451,19 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -438,7 +475,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Constraints for dumped tables

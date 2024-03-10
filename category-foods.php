@@ -4,7 +4,7 @@ if (isset($_GET['cid'])) {
     // Get data
     $cid = $_GET['cid'];
     // Viet cau lenh truy van 
-    $sql = "SELECT * FROM category WHERE id = '$cid'";
+    $sql = "SELECT * FROM category WHERE id = '$cid' AND deleted ='0'";
     // Thuc thi truy van
     $res = excuteResult($sql);
     // Dem so ban ghi
@@ -13,11 +13,10 @@ if (isset($_GET['cid'])) {
         $row = mysqli_fetch_assoc($res);
         $c_name = $row['name'];
     } else {
-        $_SESSION['noti'] = "<h1>Không tìm thấy bản ghi nào</h1>";
+        $c_name = "Không tồn tại category id";
     }
 } else {
-    $_SESSION['noti'] = "<h1>Không tồn tại category id</h1>";
-    die();
+    $c_name = "Không tồn tại category id";
 }
 
 ?>
@@ -25,13 +24,7 @@ if (isset($_GET['cid'])) {
 <!-- fOOD sEARCH Section Starts Here -->
 <section class="food-search text-center">
     <div class="container">
-        <?php
-        if (isset($_SESSION['noti'])) {
-            echo $_SESSION['noti'];
-            unset($_SESSION['noti']);
-        }
-        ?>
-        <h2>Foods on <span href="#" class="text-white">"<?= $c_name; ?>"</span></h2>
+        <h2>Tên danh mục <span href="#" class="text-white">"<?= $c_name; ?>"</span></h2>
 
     </div>
 </section>
@@ -41,6 +34,12 @@ if (isset($_GET['cid'])) {
 <section class="food-menu">
     <div class="container">
         <h2 class="text-center">THỰC ĐƠN</h2>
+        <?php
+        if (isset($_SESSION['noti'])) {
+            echo $_SESSION['noti'];
+            unset($_SESSION['noti']);
+        }
+        ?>
         <div class="row justify-around">
             <!-- Hien thi mon an moi -->
             <?php
@@ -91,6 +90,8 @@ if (isset($_GET['cid'])) {
             <?php
 
                 }
+            }else {
+                echo "<h1>Danh mục trống</h1>";
             }
             ?>
 

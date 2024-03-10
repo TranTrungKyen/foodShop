@@ -10,6 +10,14 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $address = $_POST['address'];
     $phoneNumber = $_POST['phone_number'];
+    // Security input
+    $conn = mysqli_connect(LOCALHOST, DB_USER, DB_PASSWORD, DB_DBNAME);
+    $fullname = mysqli_real_escape_string($conn, $fullname);
+    $email = mysqli_real_escape_string($conn, $email);
+    $address = mysqli_real_escape_string($conn, $address);
+    $phoneNumber = mysqli_real_escape_string($conn, $phoneNumber);
+
+    mysqli_close($conn);
     $id  = $_GET['id'];
     $roleId = isset($_GET['setRole']) ? $_GET['setRole'] : 1;
     $currentTime = date('Y-m-d H:i:s');
@@ -24,13 +32,13 @@ if (isset($_POST['submit'])) {
         ";
     // Thuc thi cau lenh truy van
     excute($sql);
-    if($_SESSION['id'] == $id){
+    if ($_SESSION['id'] == $id) {
         reloadSession();
     }
     if ($_SESSION['role_id'] == 1) {
-        
+
         if ($roleId == 2) {
-            
+
             $_SESSION['noti'] = "<div class='success'>Cập nhật người dùng thành công!</div>";
 
             header("location:" . SITEURL . "admin/layout/admin/manage-user.php");

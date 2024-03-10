@@ -2,8 +2,11 @@
 require_once('./admin/db/db_func.php');
 include('./partials-front/header.php');
 if (isset($_GET['search'])) {
+    $conn = mysqli_connect(LOCALHOST, DB_USER, DB_PASSWORD, DB_DBNAME);
     // Get data input
-    $search = $_GET['search'];
+    $search = mysqli_real_escape_string($conn,$_GET['search']);
+
+    mysqli_close($conn);
 }
 
 ?>
@@ -26,7 +29,7 @@ if (isset($_GET['search'])) {
             <!-- Hien thi mon an moi -->
             <?php
             // Viet cau lenh truy van 
-            $sql = "SELECT * FROM product WHERE deleted = '0' AND title LIKE '%$search%' ORDER BY category_id";
+            $sql = "SELECT * FROM product WHERE deleted = '0' AND (title LIKE '%$search%' OR description LIKE '%$search%') ORDER BY category_id";
             // thuc thi sql
             $res = excuteResult($sql);
             // Kiem tra so ban ghi
